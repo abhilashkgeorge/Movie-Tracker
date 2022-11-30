@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct MovieList: View {
+    
+    @ObservedObject var movieStorage = MovieStorage()
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List(movieStorage.movies){ movie in
+                NavigationLink(destination: MovieDetailView(movieStorage: movieStorage, movie: movie, newMovie: false)) {
+                    Text(movie.title)
+                }
+            }
+            .navigationTitle("Movies")
+            .toolbar {
+                ToolbarItem(){
+                    NavigationLink(destination: MovieDetailView(movieStorage: movieStorage, movie: Movies(), newMovie: true))
+                    {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+        }
     }
 }
 

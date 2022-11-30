@@ -13,7 +13,7 @@ struct Movie_TrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MovieList()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
